@@ -30,7 +30,19 @@ async function copyLink(srcUrl) {
         const qrCodeLinks = await readQRCodeFromImageBlob(blob);
         if (qrCodeLinks && qrCodeLinks.length > 0) {
             const linksText = qrCodeLinks.join("\n");
-            await navigator.clipboard.writeText(linksText);
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                // navigator.clipboard 启用
+                await navigator.clipboard.writeText(linksText);
+            }else {
+                var input = document.createElement('input');
+                input.setAttribute('readonly', 'readonly');
+                input.setAttribute('value', linksText);
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+            }
             alert("链接已复制到剪贴板.");
         } else {
             alert("图像中未找到二维码.");

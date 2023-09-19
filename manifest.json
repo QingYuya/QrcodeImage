@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "QR Code Reader",
-  "version": "1.0",
+  "version": "1.1",
   "description": "从图像中的二维码打开或复制链接",
   "permissions": ["contextMenus", "clipboardWrite", "tabs", "scripting"],
   "host_permissions": ["https://*/*", "http://*/*"],
